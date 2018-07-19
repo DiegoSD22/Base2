@@ -28,4 +28,17 @@ $("#guardar-pelicula").click(function () {
     });
 });
 
+/*
+ *Hacemos una llamada de AJAX para buscar las peliculas 
+ */
+
+$.ajax('buscar-peliculas',{
+   type:'get',
+   dataType:'json',
+   success:function(datos){
+       for(i=0; i<datos.length; i++){
+           $("#tablita").append('<tr><td>'+datos[i].id+'</td><td>'+datos[i].titulo+'</td><td>'+datos[i].sinopsis+'</td></tr>')
+       }
+   }
+});
 

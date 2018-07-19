@@ -5,6 +5,7 @@
  */
 package com.jc.model;
 
+import com.jc.controladores.Estatus;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -62,6 +63,18 @@ public class DAOPelicula {
             resultado = e.getMessage();
         }
         return peliculas;
+    }
+    
+    public static Estatus borrar(int idPelicula) throws Exception{
+        Conexion c = new Conexion();
+        Connection con = c.conectarse();
+        CallableStatement callate = con.prepareCall("{call borrar_pelicula(?)}");
+        callate.setInt(1, idPelicula);
+        Estatus es=new Estatus();
+        es.setMensaje("Borrado con exito");
+        es.setSuccess(true);
+        callate.execute();
+        return es;
     }
 
 }
