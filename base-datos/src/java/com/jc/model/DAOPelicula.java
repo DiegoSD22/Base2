@@ -65,15 +65,16 @@ public class DAOPelicula {
         return peliculas;
     }
     
-    public static Estatus borrar(int idPelicula) throws Exception{
+    public static Estatus borrarPelicula(int idPelicula) throws Exception{
         Conexion c = new Conexion();
         Connection con = c.conectarse();
         CallableStatement callate = con.prepareCall("{call borrar_pelicula(?)}");
         callate.setInt(1, idPelicula);
+        callate.execute();
         Estatus es=new Estatus();
         es.setMensaje("Borrado con exito");
         es.setSuccess(true);
-        callate.execute();
+        
         return es;
     }
 

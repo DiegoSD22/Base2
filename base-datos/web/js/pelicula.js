@@ -29,6 +29,29 @@ $("#guardar-pelicula").click(function () {
 });
 
 /*
+ * Hacemos una llamad de AJAX para borrar peliculas
+ */
+$("#borrar-pelicula").click(function () {
+    //alert("Probando el click del botón");
+     //activamos ajax
+    console.log("valor de id: "+$("#id-pelicula").val())
+    $.ajax('borrar-pelicula',{
+        type:'delete',
+     
+        data:{
+            id:$("#id-pelicula").val()
+            
+        },
+    
+        success:function(estatus){
+            alert(estatus.mensaje)
+           
+        }
+        
+    });
+});
+
+/*
  *Hacemos una llamada de AJAX para buscar las peliculas 
  */
 
