@@ -102,7 +102,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletBorrarPeliculas</servlet-name>
-        <url-pattern>/borrar-peliculas</url-pattern>
+        <url-pattern>/borrar-pelicula</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

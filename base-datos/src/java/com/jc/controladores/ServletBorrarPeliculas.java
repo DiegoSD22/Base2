@@ -20,30 +20,25 @@ import org.codehaus.jackson.map.ObjectMapper;
  */
 public class ServletBorrarPeliculas extends HttpServlet {
 
-    protected void doDelete(HttpServletRequest request,
-            HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
-        //PEDIMOS DATOS AL CLIENTE
-        String id=request.getParameter("id-pelicula");
-        int idPelicula=Integer.parseInt(id);
-
-        Estatus estatus = new Estatus();
+        //Pedimos el id de cliente
+        String id = request.getParameter("id");
+        System.out.println("el id es " + id);
+        int myId = Integer.parseInt(id);
+        Estatus e = new Estatus();
 
         try {
-            //Se invoca el procedimiento
-            estatus = DAOPelicula.borrarPelicula(idPelicula);
-
+            e = DAOPelicula.borrarPelicula(myId);
         } catch (Exception ex) {
-            estatus.setSuccess(false);
-            estatus.setMensaje("Error al borrar: " + ex.getMessage());
-
+            e.setSuccess(false);
+            e.setMensaje("Error al borrar " + ex.getMessage());
         }
+
         ObjectMapper maper = new ObjectMapper();
-        out.print(maper.writeValueAsString(estatus));
+        out.print(maper.writeValueAsString(e));
 
     }
-
 }
